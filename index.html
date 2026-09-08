@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiAuspedagem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Quicksand:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="viewCliente" class="view-section">
+        <div class="top-bar-cliente">
+            <button id="btnAbrirLogin" class="btn-acesso-dono">🔐 Área do Proprietário</button>
+        </div>
+
+        <main class="container" id="mainContainer">
+            <header class="header">
+                <h1 class="title">MiAuspedagem</h1>
+                <p class="subtitle">reservas de hospedagens para cães e gatos</p>
+            </header>
+
+            <div class="pet-wrapper">
+                <button id="btnDalmata" class="image-button" aria-label="Solicitar Reserva">
+                    <img src="doggy.jpeg" alt="Cãozinho segurando a placa Solicitar Reserva" class="pet-image">
+                </button>
+            </div>
+
+            <div class="saiba-mais-container">
+                <span>Saiba mais sobre o MiAuspedagem!</span>
+                <button id="btnAbrirSobre" class="btn-saiba-mais">Clique aqui!</button>
+            </div>
+        </main>
+
+        <section class="calendar-screen hidden" id="calendarScreen">
+            <div class="calendar-card">
+                <h2 class="calendar-title">Calendário de Reservas</h2>
+                <p class="calendar-instruction">Clique nos dias desejados para selecionar uma ou mais datas!</p>
+
+                <div class="calendar-header-nav">
+                    <button id="btnPrevMonth" class="nav-month-btn">&lt;</button>
+                    <span id="monthYearTitle" class="month-year-title"></span>
+                    <button id="btnNextMonth" class="nav-month-btn">&gt;</button>
+                </div>
+
+                <div class="calendar-grid" id="calendarGrid">
+                    <span class="day-header">D</span>
+                    <span class="day-header">S</span>
+                    <span class="day-header">T</span>
+                    <span class="day-header">Q</span>
+                    <span class="day-header">Q</span>
+                    <span class="day-header">S</span>
+                    <span class="day-header">S</span>
+                </div>
+
+                <div class="calendar-legend">
+                    <div class="legend-item"><span class="dot green"></span> Disponível</div>
+                    <div class="legend-item"><span class="dot blue"></span> Selecionado</div>
+                    <div class="legend-item"><span class="dot red"></span> Reservado</div>
+                </div>
+
+                <div id="selectedSummary" class="selected-summary">Nenhuma data selecionada</div>
+
+                <button id="btnAvancarForm" class="submit-button" disabled>PROSSEGUIR COM AS DATAS SELECIONADAS</button>
+                <button id="btnVoltarInicio" class="back-button">← Voltar</button>
+            </div>
+        </section>
+
+        <section class="form-screen hidden" id="formScreen">
+            <div class="form-card">
+                <h2 class="form-title">FORMULÁRIO DE SOLICITAÇÃO</h2>
+                <p id="selectedDateText" class="selected-date-display"></p>
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="tutorName">Nome do Tutor</label>
+                        <input type="text" id="tutorName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tutorPhone">Telefone (com DDD)</label>
+                        <input type="tel" id="tutorPhone" placeholder="(00) 00000-0000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tutorEmail">E-mail</label>
+                        <input type="email" id="tutorEmail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tutorCep">CEP</label>
+                        <input type="text" id="tutorCep" maxlength="9" placeholder="00000-000" required>
+                        <small id="cepError" class="cep-error hidden">CEP não encontrado</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tutorAddress">Endereço</label>
+                        <input type="text" id="tutorAddress" readonly class="readonly-input"
+                            placeholder="Preenchido via CEP">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tutorDetails">DETALHES DO PET (Raça, peso, observações)</label>
+                        <textarea id="tutorDetails" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">ENVIAR SOLICITAÇÃO</button>
+                </form>
+                <button id="btnVoltarCalendar" class="back-button">← Alterar datas selecionadas</button>
+            </div>
+        </section>
+
+        <section class="success-screen hidden" id="successScreen">
+            <div class="success-card">
+                <h2 class="success-title">SOLICITAÇÃO ENVIADA COM SUCESSO!</h2>
+                <div class="check-icon">✓</div>
+                <p class="success-msg">Aguarde o contato do estabelecimento para a confirmação da sua reserva.</p>
+
+                <button id="btnNovoAgendamento" class="submit-button">Início</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="modalLogin" class="modal-overlay hidden">
+        <div class="login-card">
+            <h2 class="login-title">LOGIN DO PROPRIETÁRIO</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="adminPassword">Senha de Acesso</label>
+                    <input type="password" id="adminPassword" placeholder="Digite sua senha" required>
+                    <small id="loginError" class="login-error hidden">Senha incorreta!</small>
+                </div>
+
+                <button type="submit" class="submit-button">ENTRAR</button>
+            </form>
+            <button id="btnCancelarLogin" class="back-button">← Cancelar</button>
+        </div>
+    </div>
+
+    <div id="modalSobre" class="modal-overlay hidden">
+        <div class="modal-sobre-card">
+            <div class="modal-sobre-header">
+                <h3>Sobre o MiAuspedagem</h3>
+                <button id="btnFecharSobre" class="btn-close-modal">&times;</button>
+            </div>
+            <div class="modal-sobre-body">
+                <p>Reserva de hospedagens para seus animais de estimação:</p>
+                <ul>
+                    <li>Você pode selecionar <strong>uma ou mais datas</strong> no calendário ao clicar nos dias
+                        disponíveis (em verde).</li>
+                    <li>Ao informar seu CEP, o sistema preenche o endereço automaticamente para agilizar a sua
+                        solicitação.</li>
+                    <li>Após o envio dos dados do tutor e do pet, o estabelecimento entrará em contato direto pelo
+                        WhatsApp para confirmar os detalhes e a reserva.</li>
+                </ul>
+            </div>
+            <div class="modal-sobre-footer">
+                <button id="btnEntendidoSobre" class="submit-button">Entendido!</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="viewDono" class="view-section hidden">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1 class="title" style="font-size: 2.3rem;">Painel do Proprietário</h1>
+                <button id="btnLogout" class="btn-logout">← Sair</button>
+            </div>
+
+            <div id="bookingList">
+                <!-- As solicitações serão carregadas dinamicamente aqui -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
