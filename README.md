@@ -1,6 +1,6 @@
 MiAuspedagem
 
-Sistema web para reserva e gerenciamento de hospedagens para cães e gatos. O projeto conta com uma interface para tutores realizarem solicitações de reserva e um painel exclusivo para o proprietário gerenciar os agendamentos.
+Sistema web para reserva e gerenciamento de hospedagens para cães. O projeto conta com uma interface para tutores realizarem solicitações de reserva e um painel exclusivo para o proprietário gerenciar os agendamentos.
 
 Funcionalidades
 
