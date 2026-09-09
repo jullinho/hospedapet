@@ -39,10 +39,10 @@ Consulta automatizada de CEP para autopreenchimento de endereço.
 
 Estrutura de Arquivos
 
-index.html    Estrutura principal da página (cliente e admin).
-style.css     Estilização completa do layout, modal e calendário.
-script.js     Lógica do sistema, calendário e gerenciamento de reservas.
-doggy.jpeg    Imagem principal de interação da tela inicial.
+index.html    - Estrutura principal da página (cliente e admin).
+style.css     - Estilização completa do layout, modal e calendário.
+script.js     - Lógica do sistema, calendário e gerenciamento de reservas.
+doggy.jpeg    - Imagem principal de interação da tela inicial.
 
 
 
